@@ -1,0 +1,71 @@
+CREATE TABLE cheval(
+   id_cheval INT AUTO_INCREMENT,
+   numsocietecourse_cheval VARCHAR(50) ,
+   datedenaissance_cheval DATE NOT NULL,
+   lieunaissance_chaval VARCHAR(50)  NOT NULL,
+   race_cheval VARCHAR(50)  NOT NULL,
+   couleur_cheval VARCHAR(50) ,
+   sexe_cheval VARCHAR(50) ,
+   id_cheval_enfant INT NOT NULL,
+   PRIMARY KEY(id_cheval),
+   FOREIGN KEY(id_cheval_enfant) REFERENCES cheval(id_cheval)
+);
+
+CREATE TABLE veto(
+   id_veto INT AUTO_INCREMENT,
+   prenom_veto VARCHAR(50) ,
+   nom_veto VARCHAR(50) ,
+   tel_veto VARCHAR(10) ,
+   PRIMARY KEY(id_veto)
+);
+
+CREATE TABLE individu(
+   id_individu INT AUTO_INCREMENT,
+   nom_individu VARCHAR(50) ,
+   prenom_individu VARCHAR(50) ,
+   adresse_individu VARCHAR(50) ,
+   PRIMARY KEY(id_individu)
+);
+
+CREATE TABLE Societe(
+   Id_Societe INT AUTO_INCREMENT,
+   nom_societe VARCHAR(50) ,
+   PRIMARY KEY(Id_Societe)
+);
+
+CREATE TABLE Soigne(
+   id_cheval INT,
+   id_veto INT,
+   date_vaccin DATE,
+   PRIMARY KEY(id_cheval, id_veto),
+   FOREIGN KEY(id_cheval) REFERENCES cheval(id_cheval),
+   FOREIGN KEY(id_veto) REFERENCES veto(id_veto)
+);
+
+CREATE TABLE Entraine(
+   id_cheval INT,
+   id_individu INT,
+   date_entrainement DATETIME,
+   PRIMARY KEY(id_cheval, id_individu),
+   FOREIGN KEY(id_cheval) REFERENCES cheval(id_cheval),
+   FOREIGN KEY(id_individu) REFERENCES individu(id_individu)
+);
+
+CREATE TABLE Possède(
+   id_cheval INT,
+   id_individu INT,
+   Id_Societe INT,
+   Date_Achat DATE,
+   PRIMARY KEY(id_cheval, id_individu, Id_Societe),
+   FOREIGN KEY(id_cheval) REFERENCES cheval(id_cheval),
+   FOREIGN KEY(id_individu) REFERENCES individu(id_individu),
+   FOREIGN KEY(Id_Societe) REFERENCES Societe(Id_Societe)
+);
+
+CREATE TABLE Appartient(
+   id_individu INT,
+   Id_Societe INT,
+   PRIMARY KEY(id_individu, Id_Societe),
+   FOREIGN KEY(id_individu) REFERENCES individu(id_individu),
+   FOREIGN KEY(Id_Societe) REFERENCES Societe(Id_Societe)
+);
