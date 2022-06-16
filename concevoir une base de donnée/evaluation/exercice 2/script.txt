@@ -1,0 +1,34 @@
+CREATE DATABASE IF NOT EXISTS maBoutique
+
+CREATE TABLE client(
+   N_Client INT AUTO_INCREMENT,
+   NomClient VARCHAR(50)  NOT NULL,
+   PrenomClient VARCHAR(50)  NOT NULL,
+   PRIMARY KEY(n_Client)
+);
+
+CREATE TABLE Commande(
+   n_Commande INT AUTO_INCREMENT,
+   DateCommande DATE NOT NULL,
+   MontantCommande DECIMAL(15,2)   NOT NULL,
+   n_Client INT NOT NULL,
+   PRIMARY KEY(n_Commande),
+   FOREIGN KEY(n_Client) REFERENCES client(n_Client)
+);
+
+CREATE TABLE Article(
+   N_Article INT AUTO_INCREMENT,
+   DesignationArticle VARCHAR(50)  NOT NULL,
+   PUArticle DECIMAL(15,2)   NOT NULL,
+   PRIMARY KEY(N_Article)
+);
+
+CREATE TABLE SeComposeDe(
+   N_Commande INT AUTO_INCREMENT,
+   N_Article INT,
+   Qte INT NOT NULL,
+   TauxTva INT NOT NULL,
+   PRIMARY KEY(n_Commande, N_Article),
+   FOREIGN KEY(n_Commande) REFERENCES commande(n_Commande),
+   FOREIGN KEY(N_Article) REFERENCES Article(N_Article)
+);
