@@ -4,8 +4,8 @@
 1- Select * 
 from employe;
 
-2- Select nodept
-from employe;
+2- Select *
+from dept;
 
 3- select nom,dateemb,nosup,nodep,salaire 
 from employe;
@@ -13,16 +13,16 @@ from employe;
 4- select titre
 from employe;
 
-5- select distint titre
+5- select DISTINCT titre
 from employe;
 
-6- select nom,noemp,nodept 
+6- select nom,noemp,nodep 
 from employe
 where titre = "secretaire";
 
-7- select nom , nodept
+7- select nom , nodep
 from employe
-where nodept > 40;
+where nodep > 40;
 
 8- select nom ,prenom
 from employe
@@ -30,23 +30,23 @@ order by nom > prenom;
 
 9- select nom,salaire,nodept
 from employe
-where titre = "representant" and nodept = 35 and salaire = 20000;
+where titre = "representant" and nodept = 35 and salaire > 20000;
 
 10- select nom,titre,salaire
 from employe
 where titre = "representant" or titre = "secretaire";
 
-11- select nom,titre,nodept,salaire
+11- select nom,titre,nodep,salaire
 from employe
-where nodept = "34" and titre = "representant" or titre= "secretaire";
+where nodep = "34" and titre = "representant" or titre= "secretaire";
 
-12- select nom,nodept,salaire
+12- select nom,nodep,salaire
 from employe
-where titre = "representant" or titre ="secretaire" and nodept = "34";
+where titre = "representant" or titre ="secretaire" and nodep = "34";
 
 13- select nom,salaire
 from employe
-where salaire < 20000 and salaire > 30000;
+where salaire > 20000 and salaire < 30000;
 
 15- select nom 
 from employe
@@ -54,20 +54,20 @@ where nom like "H%";
 
 16- select nom
 from employe
-where nom "%H";
+where nom like "%n";
 
 17- select nom
 from employe
-where nom like 'U__%';
+where nom like "__U%";
 
 18- select salaire,nom
 from employe 
-where nodept = "41" 
+where nodep = "41" 
 order by salaire ;
 
 19- select nom,salaire
 from employe
-where nodept= '41'
+where nodep= '41'
 order by salaire desc;
 
 20- select titre,salaire,nom
@@ -116,5 +116,5 @@ from employe;
 from employe
 where nom ='Vrante';
 
-32- select nom ,lenght(nom)
+32- select nom ,length(nom)
 from employe;
